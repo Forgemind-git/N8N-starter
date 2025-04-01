@@ -1,6 +1,5 @@
-![Forgemind AI logo](./assets/logo.png)
 <p align="center">
-  <img src="./assets/logo.png" alt="Forgemind AI logo" width="300"/>
+  <img src="./assets/logo.png" alt="Forgemind AI logo" width="200"/>
 </p>
 # ForgeMindAI - Docker Compose & n8n Workflow
 
