@@ -1,0 +1,60 @@
+volumes:
+  ollama_storage:
+  open-webui-data:
+
+networks:
+  demo:
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    networks: ['demo']
+    restart: unless-stopped
+    ports:
+      - 11434:11434
+    volumes:
+      - ollama_storage:/root/.ollama
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    networks: ['demo']
+    ports:
+      - 3000:8080
+    volumes:
+      - open-webui-data:/app/backend/data
+    environment:
+      - OLLAMA_BASE_URL=http://docker.for.mac.localhost:11434 # for MacOS
+#     - OLLAMA_BASE_URL=http://host.docker.internal:11434 # for Windows
+    depends_on:
+      - ollama
+    restart: unless-stopped
+
+  ollama-pull-models:
+    image: ollama/ollama:latest
+    container_name: ollama-pull-models
+    networks: ['demo']
+    volumes:
+      - ollama_storage:/root/.ollama
+    entrypoint: /bin/sh
+    command: 
+      - "-c" 
+# By default I have pulled llama 3.2, you can change the version to pull other models
+      - "sleep 3; OLLAMA_HOST=http://docker.for.mac.localhost:11434/ ollama pull llama3.2;"
+    depends_on:
+      - ollama
+
+  ngrok-ollama:
+    image: ngrok/ngrok
+    container_name: ngrok-ollama
+    network_mode: host
+    environment:
+# Insert your ngrok authtoken here, found at https://dashboard.ngrok.com/auth/your-authtoken
+      - NGROK_AUTHTOKEN=<your-ngrok-authtoken>
+# Insert the domain you want to use here, for example humble-presumably-longhorn.ngrok-free.app
+    command: http --domain=<your-ngrok-static-domain> 11434;
+    depends_on:
+      - ollama
