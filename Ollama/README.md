@@ -20,6 +20,7 @@ This Docker Compose setup provides a local LLM environment with the following se
 - Frontend interface for interacting with Ollama.
 - Maps port `8080` to `localhost:3000`.
 - Uses `OLLAMA_BASE_URL=http://docker.for.mac.localhost:11434` for backend access.
+- For Windows, use `http://host.docker.internal:11434`
 - Stores backend data in `open-webui-data`.
 
 ### 3. `ollama-pull-models`
@@ -29,8 +30,8 @@ This Docker Compose setup provides a local LLM environment with the following se
 
 ### 4. `ngrok-ollama`
 - Exposes Ollama’s port `11434` publicly using [Ngrok](https://ngrok.com).
-- Uses a custom subdomain (e.g., `humble-presumably-longhorn.ngrok-free.app`).
-- Requires an Ngrok authtoken (`NGROK_AUTHTOKEN`) for authentication.
+- Use the static domain provided for you by ngrok.
+- An Ngrok authtoken (`NGROK_AUTHTOKEN`) is required for authentication.
 
 ---
 
@@ -70,10 +71,15 @@ Note: `ngrok-ollama` uses `host` mode for seamless tunneling.
    ```bash
    docker-compose up -d
 
-## 
+## Steps to bring up a container
+
+1. Copy the docker compose to a separate directory.
+2. Use `docker compose up -d` to start the container.
+3. Ensure you have docker command line installed.
+4. Use `docker compose down` to stop the container.
 
 ## Accessing interfaces
 
 1. Open WebUI: http://localhost:3000
 2. Ollama API (local): http://localhost:11434
-3. Ollama API (public): <your-static-domain-from-ngrok>
+3. Ollama API (public): <your-static-domain-from-ngrok>.app
