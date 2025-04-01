@@ -11,3 +11,12 @@ This repository is part of the [ForgeMindAI](https://www.youtube.com/@ForgeMindA
 ## 🎥 Watch the Tutorial
 
 Check out the full tutorial on the ForgeMindAI YouTube channel: [YouTube Link Here]
+
+### As a prerequisite, you will need to install docker in the command line.
+https://docs.docker.com/compose/
+
+### For any queries on this repo, contact us on the following social handles:
+Youtube: https://www.youtube.com/@forgemindai
+Instagram: https://www.instagram.com/forgemind_ai/reels/
+
+### If you like this repo do star the repo and follow us for more exciting public repos.
