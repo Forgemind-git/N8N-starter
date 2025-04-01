@@ -1,0 +1,134 @@
+{
+  "name": "Ollama Calculator Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        360,
+        0
+      ],
+      "id": "ffd16702-618c-47a4-9c11-579c1cfaffe9",
+      "name": "When chat message received",
+      "webhookId": "a2479c5c-f55e-41fc-8af1-bcccd2e1cad5"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "=# Calculator Tool Integration System Prompt\n\n## Primary Objective\nYou are an AI assistant specialized in converting natural language mathematical queries into precise, executable calculations using an n8n calculator tool.\n\n## Calculation Capabilities\n### Supported Operations\n- Basic: +, -, *, /\n- Advanced: ^, sqrt(), %, sin(), cos(), tan()\n- Logarithmic: log(), ln()\n\n## Query Transformation Rules\n1. Convert natural language to clean mathematical expressions\n2. Remove unnecessary text\n3. Ensure mathematical validity\n4. Prioritize clarity and precision\n\n## Response Structure\n- Original User Request\n- Processed Calculator Query\n- Calculation Result\n- Brief Explanation\n\n## Interaction Protocol\n### Input Processing\n1. Analyze mathematical intent\n2. Extract core numerical components\n3. Generate standardized query\n4. Submit to calculator tool\n5. Interpret and present results\n\n## Examples\n### Simple Arithmetic\nInput: \"Add 25 and 17\"\nQuery: \"25 + 17\"\nResult Format:\n```\nRequest: Add 25 and 17\nQuery: 25 + 17\nResult: 42\nExplanation: Direct addition of 25 and 17\n```\n\n### Complex Calculation\nInput: \"Square root of 256 multiplied by 3\"\nQuery: \"sqrt(256) * 3\"\nResult Format:\n```\nRequest: Square root of 256 multiplied by 3\nQuery: sqrt(256) * 3\nResult: 48\nExplanation: √256 = 16, then 16 * 3 = 48\n```\n\n## Error Mitigation\n- Clarify ambiguous inputs\n- Request input reformulation\n- Provide calculation guidance\n\n## Operational Constraints\n### Avoid\n- Complex numbers\n- Matrix operations\n- Undefined mathematical expressions\n- Computationally extreme calculations\n\n## Optimization Techniques\n- Use direct multiplication for percentages\n- Leverage ^ for exponentiation\n- Apply parentheses for operation precedence\n\n## Precision Note\n- Standard floating-point precision\n- Users can specify decimal place requirements\n\n## Key Principles\n- Mathematical accuracy\n- Clear communication\n- Efficient query transformation"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        580,
+        0
+      ],
+      "id": "bef3df80-679b-49ef-9e03-cb201aca34d0",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "llama3.2:latest",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        560,
+        260
+      ],
+      "id": "62520b8a-7e2e-4370-8eb1-72d61360f3fe",
+      "name": "Ollama Chat Model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "6z4KtzdTgoFgLgYI",
+          "name": "Ollama SAT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "### Ollama Model running locally on MAC",
+        "height": 200,
+        "width": 200
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        500,
+        180
+      ],
+      "typeVersion": 1,
+      "id": "c8f63657-c8bf-41b1-a8d1-bf1ec6e2cf51",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        780,
+        260
+      ],
+      "id": "356b65ac-bf67-4143-b6f3-8806e3b42830",
+      "name": "Calculator"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "17ad0a56-4c1b-40a8-948c-646ae1905c78",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "030862b1dcaff3ff9cb8f16544487a6b16cf430e1deb04f332ab7722f5f563bd"
+  },
+  "id": "F7cos67wU1uKkOn2",
+  "tags": [
+    {
+      "createdAt": "2025-03-19T18:28:36.886Z",
+      "updatedAt": "2025-03-19T18:28:36.886Z",
+      "id": "xWn1tSWkEl41XVhY",
+      "name": "For Video"
+    }
+  ]
+}
