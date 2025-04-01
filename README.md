@@ -12,11 +12,16 @@ This repository is part of the [ForgeMindAI](https://www.youtube.com/@ForgeMindA
 
 Check out the full tutorial on the ForgeMindAI YouTube channel: [YouTube Link Here]
 
-### As a prerequisite, you will need to install docker in the command line.
+## To import the workflow to your n8n
+* After creating a workflow, go to the 3 dots in the top right corner.
+* Select import from file and select this file.
+  ![N8N import](./assets/import_workflow.png)
+
+* As a prerequisite, you will need to install docker in the command line.
 https://docs.docker.com/compose/
 
-### For any queries on this repo, contact us on the following social handles:
+* For any queries on this repo, contact us on the following social handles:
 Youtube: https://www.youtube.com/@forgemindai
 Instagram: https://www.instagram.com/forgemind_ai/reels/
 
-### If you like this repo do star the repo and follow us for more exciting public repos.
+* If you like this repo do star the repo and follow us for more exciting public repos.
