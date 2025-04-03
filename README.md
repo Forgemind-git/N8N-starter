@@ -18,7 +18,7 @@ Check out the full tutorial on the ForgeMindAI YouTube channel: [[YouTube Link H
 
 ## To import the workflow to your n8n
 * After creating a workflow, go to the 3 dots in the top right corner.
-* Select import from file and select this file.
+* Select import from file and select this file. (ollama-calculator-agent.json)
   ![N8N import](./assets/import_workflow.png)
 
 * As a prerequisite, you will need to install docker in the command line.
